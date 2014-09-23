@@ -9,3 +9,8 @@ The module registers the MessageBox model: messagebox@messagebox
 
 Then you can use it as normal.  You can modify the module settings for style overrides
 and template overrides.
+
+messagebox = {
+	template 		= "#moduleMapping#/views/MessageBox.cfm",
+	styleOverride 	= false
+};

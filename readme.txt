@@ -18,6 +18,8 @@ WELCOME TO THE MESSAGEBOX MODULE
 ********************************************************************************
 Created & copyright by Luis Majano (Ortus Solutions, Corp)
 
+A nice producer of flash scoped based messages that's skinnable
+
 ********************************************************************************
 LICENSE
 ********************************************************************************
@@ -33,9 +35,8 @@ Source
 ********************************************************************************
 SYSTEM REQUIREMENTS
 ********************************************************************************
-- Railo 3.2 and above
-- ColdFusion MX 9 and above
-- ColdBox 4.0.0 and above
+- Railo 4+
+- ColdFusion 9+
 
 ----
 

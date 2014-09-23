@@ -25,16 +25,16 @@ Description :
 
 	<cffunction name="init" access="public" returntype="MessageBox" output="false" hint="Constructor">
 		<!--- ************************************************************* --->
-		<cfargument name="config" 	type="struct" required="true" inject="coldbox:moduleConfig:messagebox">
+		<cfargument name="config" 	type="struct" required="true" inject="coldbox:setting:messagebox">
 		<!--- ************************************************************* --->
 		<cfscript>
 
 			// prepare properties
 			instance.flashKey 		= "coldbox_messagebox";
 			instance.flashDataKey 	= "coldbox_messagebox_data";
-			instance.template		= arguments.config.settings.template;
-			instance.styleOverride 	= arguments.config.settings.styleOverride;
-			instance.moduleRoot		= arguments.config.mapping;
+			instance.template		= arguments.config.template;
+			instance.styleOverride 	= arguments.config.styleOverride;
+			instance.moduleRoot		= arguments.config.moduleRoot;
 
 			return this;
 		</cfscript>
