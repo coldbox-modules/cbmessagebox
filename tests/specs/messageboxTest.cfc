@@ -16,7 +16,7 @@ www.coldbox.org | www.luismajano.com | www.ortussolutions.com
 	<cffunction name="testObject" access="public" returntype="void" output="false">
 		<!--- Now test some events --->
 		<cfscript>
-			var model = getWireBox().getInstance("MessageBox@messagebox");
+			var model = getWireBox().getInstance("MessageBox@cbmessagebox");
 
 			AssertTrue( isObject(model) );
 
@@ -29,7 +29,7 @@ www.coldbox.org | www.luismajano.com | www.ortussolutions.com
 			var messages = "";
 
 			/* get Plugin */
-			var model = getWireBox().getInstance("MessageBox@messagebox");
+			var model = getWireBox().getInstance("MessageBox@cbmessagebox");
 
 			/* Set Message */
 			model.setMessage("info","TestMessage");
