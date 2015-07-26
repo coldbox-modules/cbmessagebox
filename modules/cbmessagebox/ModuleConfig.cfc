@@ -39,16 +39,18 @@ component {
 		var oConfig 		= controller.getSetting( "ColdBoxConfig" );
 		var configStruct 	= controller.getConfigSettings();
 		var messagebox		= oConfig.getPropertyMixin( "messagebox", "variables", structnew() );
-
 		//defaults
-		configStruct.messagebox = {
+		var mbConfig = {
 			template 		= "#moduleMapping#/views/MessageBox.cfm",
 			styleOverride 	= false,
 			moduleRoot		= moduleMapping
 		};
-
 		// Incorporate settings
-		structAppend( configStruct.messagebox, messagebox, true );
+		if(structKeyExists(configStruct,"messagebox")){
+			structAppend( configStruct.messagebox, mbConfig, false );
+		} else {
+			configStruct.messagebox = mbConfig;
+		}
 	}
 
 }
