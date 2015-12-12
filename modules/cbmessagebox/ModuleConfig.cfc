@@ -42,7 +42,7 @@ component {
 
 		//defaults
 		configStruct.messagebox = {
-			template 		= "#moduleMapping#/views/MessageBox.cfm",
+			template 		= "/#moduleMapping#/views/MessageBox.cfm",
 			styleOverride 	= false,
 			moduleRoot		= moduleMapping
 		};
