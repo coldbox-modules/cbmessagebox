@@ -1,14 +1,13 @@
 <cfparam name="url.version" default="0">
-<cfparam name="url.path" 	default="#expandPath( "./CBMessageBox-APIDocs" )#">
+<cfparam name="url.path" 	default="#expandPath( "./cbmessagebox-APIDocs" )#">
 <cfscript>
-	docName = "CBMessageBox-APIDocs";
-	base = expandPath( "/cbmessagebox" );
-
-	colddoc 	= new ColdDoc();
-	strategy 	= new colddoc.strategy.api.HTMLAPIStrategy( url.path, "CBMessageBox v#url.version#" );
-	colddoc.setStrategy( strategy );
-
-	colddoc.generate( inputSource=base, outputDir=url.path, inputMapping="cbmessagebox" );
+	docName = "cbmessagebox-APIDocs";
+	base 	= expandPath( "/cbmessagebox" );
+	docbox 	= new docbox.DocBox( properties = {
+		projectTitle 	= "cbmessagebox v#url.version#",
+		outputDir 		= url.path
+	} );
+	docbox.generate( source=base, mapping="cbmessagebox" );
 </cfscript>
 
 <!---

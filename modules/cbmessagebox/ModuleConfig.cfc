@@ -5,7 +5,7 @@ component {
 	this.author 			= "Luis Majano";
 	this.webURL 			= "http://www.ortussolutions.com";
 	this.description 		= "A nice module to produce informative messageboxes leveraging Flash RAM";
-	this.version			= "1.0.0+@build.number@";
+	this.version			= "2.0.0+@build.number@";
 	// If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
 	this.viewParentLookup 	= true;
 	// If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
@@ -42,7 +42,7 @@ component {
 
 		//defaults
 		configStruct.messagebox = {
-			template 		= "/#moduleMapping#/views/MessageBox.cfm",
+			template 		= "/cbmessagebox/views/MessageBox.cfm",
 			styleOverride 	= false,
 			moduleRoot		= moduleMapping
 		};

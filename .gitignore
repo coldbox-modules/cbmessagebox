@@ -2,8 +2,9 @@
 logs/*.log
 settings.xml
 .netbeans
-test/results/*.properties
-test/results/*.html
-test/results/*.log
+tests/results/*.properties
+tests/results/*.html
+tests/results/*.log
 tests/results
-modules/javaloader
+coldbox
+testbox
