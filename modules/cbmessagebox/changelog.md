@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+## 2.1.0 
+* Travis updates
+* DocBox Updates
+* Build Process updates
+
 ## 2.0.0
 * Updated build process to use new DocBox
 * Updated build process to leverage CommandBox for dependencies

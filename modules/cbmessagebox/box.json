@@ -1,7 +1,7 @@
 {
 	"name" 		: "MessageBox",
-	"author" 	: "Luis Majano <lmajano@ortussolutions.com",
-	"version"	: "2.0.0",
+	"version"	: "@version.number@+@build.number@",
+	"author" 	: "Ortus Solutions.com <info@ortussolutions.com",
 	"slug"		: "cbmessagebox",
 	"type"		: "modules",
 	"homepage"	: "https://github.com/ColdBox/cbox-messagebox",
@@ -18,6 +18,9 @@
 		{ "type" : "lucee", "version" : ">4.5" },
 		{ "type" : "adobe", "version" : ">9.02" }
 	],
-	"dependencies" 	:{
-	}
+	"ignore":[
+        "**/.*",
+        "tests",
+        "*/.md"
+    ]
 }

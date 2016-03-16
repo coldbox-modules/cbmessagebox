@@ -1,5 +1,5 @@
-<cfcomponent output="false" hint="My App Configuration">
-<cfscript>
+component{
+	
 	// Configure ColdBox Application
 	function configure(){
 
@@ -81,5 +81,5 @@
 		];
 
 	}
-</cfscript>
-</cfcomponent>
+
+}

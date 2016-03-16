@@ -1,14 +1,14 @@
 {
-    "name":"CBMessageBox Builder",
+    "name":"cbjavaloader Builder",
     "version":"1.0.0",
-    "slug":"cbmessagebox-shell",
+    "slug":"cbjavaloader-shell",
     "private":false,
     "defaultPort":0,
     "dependencies":{
         "coldbox":"4.1.0+00002"
     },
     "devDependencies":{
-        "testbox":"2.2.0"
+        "testbox":"2.3.0+00044"
     },
     "installPaths":{
         "coldbox":"coldbox",

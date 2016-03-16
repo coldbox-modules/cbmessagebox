@@ -8,8 +8,11 @@ component{
 	API_ROOT = getDirectoryFromPath( getCurrentTemplatePath() );
 	rootPath = REReplaceNoCase( API_ROOT, "apidocs(\\|\/)$", "" );
 
-	this.mappings[ "/docbox" ]  		= API_ROOT & "docbox";
-	this.mappings[ "/root" ] 			= rootPath;
-	this.mappings[ "/cbmessagebox" ] 	= rootPath & "modules/cbmessagebox/models";
+	// MODULE NAME
+	request.moduleName = "cbjavaloader";
+
+	this.mappings[ "/docbox" ] 	= API_ROOT & "docbox";
+	this.mappings[ "/root" ] 	= rootPath;
+	this.mappings[ "/#request.moduleName#" ] = rootPath & "modules/#request.moduleName#/models";
 
 }

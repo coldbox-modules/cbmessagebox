@@ -2,9 +2,11 @@
 logs/*.log
 settings.xml
 .netbeans
-tests/results/*.properties
-tests/results/*.html
-tests/results/*.log
-tests/results
-coldbox
-testbox
+tests/results/*
+modules/cbvalidation/*
+coldbox/*
+testbox/*
+artifacts/*
+apidocs/docbox/*
+workbench/build.number
+build/*

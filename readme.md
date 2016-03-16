@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ColdBox/cbox-messagebox.svg?branch=development)](https://travis-ci.org/ColdBox/cbox-messagebox)
+
 # WELCOME TO THE MESSAGEBOX MODULE
 A nice producer of flash scoped based messages that's skinnable
 
@@ -34,7 +36,7 @@ messagebox = {
 
 ********************************************************************************
 Copyright Since 2005 ColdBox Framework by Luis Majano and Ortus Solutions, Corp
-www.coldbox.org | www.luismajano.com | www.ortussolutions.com
+www.ortussolutions.com
 ********************************************************************************
 ####HONOR GOES TO GOD ABOVE ALL
 Because of His grace, this project exists. If you don't like this, then don't read it, its not for you.
