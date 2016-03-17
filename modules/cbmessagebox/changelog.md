@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+## 2.2.0
+
 ## 2.1.0 
 * Travis updates
 * DocBox Updates
