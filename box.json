@@ -1,7 +1,7 @@
 {
-    "name":"cbjavaloader Builder",
+    "name":"messagebox Builder",
     "version":"1.0.0",
-    "slug":"cbjavaloader-shell",
+    "slug":"messagebox-shell",
     "private":false,
     "defaultPort":0,
     "dependencies":{
