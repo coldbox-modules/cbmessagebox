@@ -338,6 +338,34 @@ component accessors="true" singleton{
 
 		return results;
 	}
+
+	/**
+	* Returns true if the message box contains a message of specified type
+	* @type The message type, available types are: info, error, warn
+	*/
+
+	boolean function hasMessageType(
+		required string type
+	){
+		// validate message type
+		if (isValidMessageType( arguments.type )) {
+			// don't bother checking for a message type if we don't have a message
+			if (isEmptyMessage()) {
+				return false;
+			}
+			else {
+				var msgStruct = getMessage();
+				return ((compareNoCase(msgStruct.type,arguments.type)) == 0) ? true : false; 
+			}
+		}
+		else {
+			throw(
+				message = "Invalid message type: #arguments.type#",
+				detail 	= "Valid types are info,warn,error",
+				type 	= "MessageBox.InvalidType"
+			);
+		}
+	}
 	
 
 	/**
