@@ -295,7 +295,7 @@ component accessors="true" singleton{
 		}
 
 		// clear?
-		if( arguments.clearMessage ){
+		if( arguments.clearData ){
 			flash.remove( name=flashKey, saveNow=true );
 		}
 
