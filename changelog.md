@@ -2,6 +2,9 @@ CHANGELOG
 =========
 
 ## 2.2.0
+* New function `hasMessageType` returns true if the messagebox has a message of the specified type.
+* Fix on `getData()` to clear the message correctly.
+* Travis updates
 
 ## 2.1.0 
 * Travis updates

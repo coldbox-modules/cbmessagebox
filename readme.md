@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ColdBox/cbox-messagebox.svg?branch=development)](https://travis-ci.org/ColdBox/cbox-messagebox)
+[![Build Status](https://travis-ci.org/coldbox-modules/cbox-messagebox.svg?branch=development)](https://travis-ci.org/coldbox-modules/cbox-messagebox)
 
 # WELCOME TO THE MESSAGEBOX MODULE
 A nice producer of flash scoped based messages that's skinnable
@@ -7,12 +7,13 @@ A nice producer of flash scoped based messages that's skinnable
 Apache License, Version 2.0.
 
 ##IMPORTANT LINKS
-- https://github.com/ColdBox/cbox-messagebox
-- http://forgebox.io/view/cbmessagebox
+- https://github.com/coldbox-modules/cbox-messagebox
+- https://forgebox.io/view/cbmessagebox
+- [Changelog](changelog.md)
 
 ##SYSTEM REQUIREMENTS
 - Lucee 4.5+
-- ColdFusion 9+
+- ColdFusion 10+
 
 # INSTRUCTIONS
 Just drop into your **modules** folder or use CommandBox to install
