@@ -6,7 +6,7 @@ component{
 		// coldbox directives
 		coldbox = {
 			//Application Setup
-			appName 				= "MessageBox Shell",
+			appName 				= "Development Shell",
 
 			//Development Settings
 			reinitPassword			= "",
@@ -46,9 +46,6 @@ component{
 		// custom settings
 		settings = {
 		};
-
-		// Activate WireBox
-		wirebox = { enabled = true, singletonReload=true };
 
 		// Module Directives
 		modules = {

@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## 2.2.1
+* Updates to unified workbench
+* Fixes on warning messages showing as infos
+
 ## 2.2.0
 * New function `hasMessageType` returns true if the messagebox has a message of the specified type.
 * Fix on `getData()` to clear the message correctly.
