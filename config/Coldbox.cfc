@@ -78,5 +78,11 @@ component{
 		];
 
 	}
+	
+	// Stupid 2018 workaround to make build pass
+	// https://tracker.adobe.com/#/view/CF-4203283
+	function preModuleLoad() {
+		getApplicationMetadata();
+	}
 
 }
