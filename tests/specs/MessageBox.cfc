@@ -32,7 +32,7 @@ component extends="coldbox.system.testing.BaseTestCase" appmapping='root'{
 				expect(	m ).toBeComponent();
 			});
 
-			var types = [ "info", "warn", "error" ];
+			var types = [ "success", "info", "warn", "error" ];
 			for( var thisType in types ){
 				it( title="can set #thisType# messages", 
 					data={ type = thisType },
