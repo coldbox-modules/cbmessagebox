@@ -3,15 +3,15 @@
 # WELCOME TO THE MESSAGEBOX MODULE
 A nice producer of flash scoped based messages that's skinnable
 
-##LICENSE
+## LICENSE
 Apache License, Version 2.0.
 
-##IMPORTANT LINKS
+## IMPORTANT LINKS
 - https://github.com/coldbox-modules/cbox-messagebox
 - https://forgebox.io/view/cbmessagebox
 - [Changelog](changelog.md)
 
-##SYSTEM REQUIREMENTS
+## SYSTEM REQUIREMENTS
 - Lucee 4.5+
 - ColdFusion 10+
 
@@ -39,7 +39,7 @@ messagebox = {
 Copyright Since 2005 ColdBox Framework by Luis Majano and Ortus Solutions, Corp
 www.ortussolutions.com
 ********************************************************************************
-####HONOR GOES TO GOD ABOVE ALL
+#### HONOR GOES TO GOD ABOVE ALL
 Because of His grace, this project exists. If you don't like this, then don't read it, its not for you.
 
 >"Therefore being justified by faith, we have peace with God through our Lord Jesus Christ:
@@ -49,5 +49,5 @@ And patience, experience; and experience, hope:
 And hope maketh not ashamed; because the love of God is shed abroad in our hearts by the 
 Holy Ghost which is given unto us. ." Romans 5:5
 
-###THE DAILY BREAD
+### THE DAILY BREAD
  > "I am the way, and the truth, and the life; no one comes to the Father, but by me (JESUS)" Jn 14:1-12
