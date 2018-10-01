@@ -14,6 +14,8 @@ messagebox_style_override setting flag in your configuration file.
 	<cfset msgClass = "cbox_messagebox_error">
 <cfelseif msgStruct.type eq "warn">
 	<cfset msgClass = "cbox_messagebox_warning">
+<cfelseif msgStruct.type eq "success">
+	<cfset msgClass = "cbox_messagebox_success">
 <cfelse>
 	<cfset msgClass = "cbox_messagebox_info">
 </cfif>
@@ -26,6 +28,12 @@ messagebox_style_override setting flag in your configuration file.
 		font-size: 13px;
 		font-weight: bold;
 		margin: 10px;
+	}
+	.cbox_messagebox_success{
+		background: ##E6F2D3 url(#variables.moduleRoot#/includes/images/cmsg.gif) no-repeat scroll .5em 50%;
+		border: 1px solid ##72BD27;
+		margin: 0.3em;
+		padding: 0pt 1em 0pt 3.5em;
 	}
 	.cbox_messagebox_info{
 		background: ##D1E6EF url(#variables.moduleRoot#/includes/images/cmsg.gif) no-repeat scroll .5em 50%;

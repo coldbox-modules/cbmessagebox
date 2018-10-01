@@ -7,6 +7,7 @@
 * 1. Warn
 * 2. Error
 * 3. Info
+* 4. Success
 * The messages and optional metadata will be stored in the application's Flash RAM storage.
 * ---
 * The look and feel of the messages can be altered by styles and cfml template settings.
@@ -61,6 +62,16 @@ component accessors="true" singleton{
 	}
 
 	/**
+	* Facade to setmessage with success type
+	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
+	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
+	*/
+	MessageBox function success( message="", array messageArray ){
+		arguments.type = "success";
+		return setMessage( argumentCollection=arguments );
+	}
+
+	/**
 	* Facade to setmessage with error type
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
 	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
@@ -101,7 +112,7 @@ component accessors="true" singleton{
 
 	/**
 	* Create a new MessageBox with a specific message and type
-	* @type The message type, available types are: info, error, warn
+	* @type The message type, available types are: success, info, error, warn
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
 	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
 	*/
@@ -130,7 +141,7 @@ component accessors="true" singleton{
 		} else {
 			throw(
 				message = "The message type is invalid: #arguments.type#",
-				detail 	= "Valid types are info,error or warn",
+				detail 	= "Valid types are success, info, error or warn",
 				type 	= "MessageBox.InvalidMessageType"
 			);
 		}
@@ -341,7 +352,7 @@ component accessors="true" singleton{
 
 	/**
 	* Returns true if the message box contains a message of specified type
-	* @type The message type, available types are: info, error, warn
+	* @type The message type, available types are: success, info, error, warn
 	*/
 
 	boolean function hasMessageType(
@@ -361,7 +372,7 @@ component accessors="true" singleton{
 		else {
 			throw(
 				message = "Invalid message type: #arguments.type#",
-				detail 	= "Valid types are info,warn,error",
+				detail 	= "Valid types are success, info, error or warn",
 				type 	= "MessageBox.InvalidType"
 			);
 		}
@@ -370,7 +381,7 @@ component accessors="true" singleton{
 
 	/**
 	* Renders a messagebox immediately for you with the passed in arguments 
-	* @type The message type, available types are: info, error, warn
+	* @type The message type, available types are: success, info, error, warn
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
 	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
 	* @template The CFML template to use to render the messagebox, if not passed then the one set as default will be used.
@@ -397,7 +408,7 @@ component accessors="true" singleton{
 		} else {
 			throw(
 				message = "Invalid message type: #arguments.type#",
-				detail 	= "Valid types are info,warn,error",
+				detail 	= "Valid types are success, info, error or warn",
 				type 	= "MessageBox.InvalidType"
 			);
 		}
@@ -422,7 +433,7 @@ component accessors="true" singleton{
 	* @type The message type
 	*/
 	private boolean function isValidMessageType( required string type ){
-		return refindnocase( "(error|warn|info)", trim( arguments.type ) ) ? true : false; 
+		return refindnocase( "(error|warn|info|success)", trim( arguments.type ) ) ? true : false; 
 	}
 
 	/**
