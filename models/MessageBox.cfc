@@ -1,17 +1,17 @@
 ﻿/**
-* Copyright Since 2005 Ortus Solutions, Corp
-* www.ortussolutions.com 
-* ---
-* @author Luis Majano
-* This module provides a way to track alert message boxes.  The user has several types of message types
-* 1. Warn
-* 2. Error
-* 3. Info
-* 4. Success
-* The messages and optional metadata will be stored in the application's Flash RAM storage.
-* ---
-* The look and feel of the messages can be altered by styles and cfml template settings.
-*/
+ * Copyright Since 2005 Ortus Solutions, Corp
+ * www.ortussolutions.com
+ * ---
+ * @author Luis Majano
+ *
+ * This module provides a way to track alert message boxes.  The user has several types of message types
+ * 1. Warn
+ * 2. Error
+ * 3. Info
+ * 4. Success
+ * The messages and optional metadata will be stored in the application's Flash RAM storage.
+ * The look and feel of the messages can be altered by styles and cfml template settings.
+ */
 component accessors="true" singleton{
 
 	/******************************************** DI ************************************************************/
@@ -264,7 +264,7 @@ component accessors="true" singleton{
 		);
 		return this;
 	}
-	
+
 	/**
 	* Add metadata that can be used for saving arbitrary stuff alongside our flash messages
 	* @key The key to store
@@ -293,7 +293,7 @@ component accessors="true" singleton{
 		);
 		return this;
 	}
-	
+
 	/**
 	 * Get the message data
 	 * @clearData clear the data from flash or not.
@@ -332,7 +332,7 @@ component accessors="true" singleton{
 		var thisTemplate 	= variables.template;
 
 		// verify if the template is passed
-		if( len( trim( arguments.template ) ) ){ 
+		if( len( trim( arguments.template ) ) ){
 			thisTemplate = arguments.template;
 		}
 
@@ -366,7 +366,7 @@ component accessors="true" singleton{
 			}
 			else {
 				var msgStruct = getMessage();
-				return ((compareNoCase(msgStruct.type,arguments.type)) == 0) ? true : false; 
+				return ((compareNoCase(msgStruct.type,arguments.type)) == 0) ? true : false;
 			}
 		}
 		else {
@@ -377,10 +377,10 @@ component accessors="true" singleton{
 			);
 		}
 	}
-	
+
 
 	/**
-	* Renders a messagebox immediately for you with the passed in arguments 
+	* Renders a messagebox immediately for you with the passed in arguments
 	* @type The message type, available types are: success, info, error, warn
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
 	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
@@ -398,7 +398,7 @@ component accessors="true" singleton{
 		var results 		= "";
 
 		// verify if the template is passed
-		if( len( trim( arguments.template ) ) ){ 
+		if( len( trim( arguments.template ) ) ){
 			thisTemplate = arguments.template;
 		}
 
@@ -433,7 +433,7 @@ component accessors="true" singleton{
 	* @type The message type
 	*/
 	private boolean function isValidMessageType( required string type ){
-		return refindnocase( "(error|warn|info|success)", trim( arguments.type ) ) ? true : false; 
+		return refindnocase( "(error|warn|info|success)", trim( arguments.type ) ) ? true : false;
 	}
 
 	/**
