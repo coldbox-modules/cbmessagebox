@@ -1,62 +1,60 @@
 ﻿<cfsetting enablecfoutputonly=true>
-<!-----------------------------------------------------------------------
-********************************************************************************
-Copyright Since 2005 ColdBox Framework by Luis Majano and Ortus Solutions, Corp
-www.ortussolutions.com
-********************************************************************************
-This is the display of the frameworks MessageBox.
-You can customize this as you want via your own css and the
-messagebox_style_override setting flag in your configuration file.
-
------------------------------------------------------------------------>
-<!--- Set the css class --->
-<cfif msgStruct.type eq "error">
-	<cfset msgClass = "cbox_messagebox_error">
-<cfelseif msgStruct.type eq "warn">
-	<cfset msgClass = "cbox_messagebox_warning">
-<cfelseif msgStruct.type eq "success">
-	<cfset msgClass = "cbox_messagebox_success">
-<cfelse>
-	<cfset msgClass = "cbox_messagebox_info">
-</cfif>
 <cfoutput>
 <cfif NOT variables.styleOverride>
 	<cfsavecontent variable="mbstyle">
 	<!--- Style Declaration --->
 	<style type="text/css">
 	.cbox_messagebox{
-		font-size: 13px;
-		font-weight: bold;
-		margin: 10px;
+		position: relative;
+		padding: .75rem 1.25rem;
+		margin-bottom: 1rem;
+		border: 1px solid transparent;
+		border-radius: .25rem;
+	}
+	.cbox_messagebox a{
+		color: ##002752;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.cbox_messagebox a:hover{
+		text-decoration: underline;
 	}
 	.cbox_messagebox_success{
-		background: ##E6F2D3 url(#variables.moduleRoot#/includes/images/cmsg.gif) no-repeat scroll .5em 50%;
-		border: 1px solid ##72BD27;
-		margin: 0.3em;
-		padding: 0pt 1em 0pt 3.5em;
+		color: ##155724;
+		background-color: ##d4edda;
+		border-color: ##c3e6cb;
 	}
 	.cbox_messagebox_info{
-		background: ##D1E6EF url(#variables.moduleRoot#/includes/images/cmsg.gif) no-repeat scroll .5em 50%;
-		border: 1px solid ##2580B2;
-		margin: 0.3em;
-		padding: 0pt 1em 0pt 3.5em;
+		color: ##0c5460;
+		background-color: ##d1ecf1;
+		border-color: ##bee5eb;
 	}
-	.cbox_messagebox_warning{
-		background: ##FFF2CF url(#variables.moduleRoot#/includes/images/wmsg.gif) no-repeat scroll .5em 50%;
-		border: 1px solid ##2580B2;
-		margin: 0.3em;
-		padding: 0pt 1em 0pt 3.5em;
+	.cbox_messagebox_warn{
+		color: ##856404;
+		background-color: ##fff3cd;
+		border-color: ##ffeeba;
 	}
 	.cbox_messagebox_error{
-		background: ##FFFFE0 url(#variables.moduleRoot#/includes/images/emsg.gif) no-repeat scroll .5em 50%;
-		border: 1px solid ##2580B2;
-		margin: 0.3em;
-		padding: 0pt 1em 0pt 3.5em;
+		color: ##721c24;
+		background-color: ##f8d7da;
+		border-color: ##f5c6cb;
+	}
+	.cbox_messagebox_dark{
+		color: ##1b1e21;
+		background-color: ##d6d8d9;
+		border-color: ##c6c8ca;
+	}
+	.cbox_messagebox_light{
+		color: ##383d41;
+		background-color: ##e2e3e5;
+		border-color: ##d6d8db;
 	}
 	</style>
 	</cfsavecontent>
 	<cfhtmlhead text="#mbstyle#">
 </cfif>
-<div class="#msgClass#"><p class="cbox_messagebox">#msgStruct.message#</p></div>
+<div class="cbox_messagebox cbox_messagebox_#msgStruct.type#">
+	#msgStruct.message#
+</div>
 </cfoutput>
 <cfsetting enablecfoutputonly="false">

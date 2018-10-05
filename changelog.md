@@ -1,9 +1,12 @@
 # CHANGELOG
 
-## 2.3.0
+## 3.0.0
 
 * Update to new module layout
 * Adding support for `success` alert message boxes. Updating throw details to correct inconsistency (https://github.com/coldbox-modules/cbmessagebox/pull/11) thanks to @zakarym
+* Removed legacy icons and left just messageboxes with modern css styles
+* Added new messagebox type: `dark` for a nice dark tone
+* Update all css to more modern look and feel
 
 ## 2.2.1
 

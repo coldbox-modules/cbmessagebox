@@ -62,6 +62,26 @@ component accessors="true" singleton{
 	}
 
 	/**
+	* Facade to setmessage with dark type
+	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
+	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
+	*/
+	MessageBox function dark( message="", array messageArray ){
+		arguments.type = "dark";
+		return setMessage( argumentCollection=arguments );
+	}
+
+	/**
+	* Facade to setmessage with light type
+	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
+	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
+	*/
+	MessageBox function light( message="", array messageArray ){
+		arguments.type = "light";
+		return setMessage( argumentCollection=arguments );
+	}
+
+	/**
 	* Facade to setmessage with success type
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
 	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
@@ -354,7 +374,6 @@ component accessors="true" singleton{
 	* Returns true if the message box contains a message of specified type
 	* @type The message type, available types are: success, info, error, warn
 	*/
-
 	boolean function hasMessageType(
 		required string type
 	){
@@ -433,7 +452,7 @@ component accessors="true" singleton{
 	* @type The message type
 	*/
 	private boolean function isValidMessageType( required string type ){
-		return refindnocase( "(error|warn|info|success)", trim( arguments.type ) ) ? true : false;
+		return refindnocase( "(error|warn|info|success|dark|light)", trim( arguments.type ) ) ? true : false;
 	}
 
 	/**
