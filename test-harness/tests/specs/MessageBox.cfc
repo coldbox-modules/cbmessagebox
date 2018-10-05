@@ -2,12 +2,11 @@
 * MessageBox tests
 */
 component extends="coldbox.system.testing.BaseTestCase" appmapping='root'{
-	
+
 /*********************************** LIFE CYCLE Methods ***********************************/
 
 	// executes before all suites+specs in the run() method
 	function beforeAll(){
-		reset();
 		super.beforeAll();
 	}
 
@@ -34,7 +33,7 @@ component extends="coldbox.system.testing.BaseTestCase" appmapping='root'{
 
 			var types = [ "success", "info", "warn", "error" ];
 			for( var thisType in types ){
-				it( title="can set #thisType# messages", 
+				it( title="can set #thisType# messages",
 					data={ type = thisType },
 					body=function( data ){
 						m.setMessage( data.type, "test message" );
@@ -69,5 +68,5 @@ component extends="coldbox.system.testing.BaseTestCase" appmapping='root'{
 
 		});
 	}
-	
+
 }
