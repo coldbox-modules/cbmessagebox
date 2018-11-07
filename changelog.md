@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.1
+
+* Patch for not sending styles to headers to avoid collisions on test modes
+
 ## 3.0.0
 
 * Update to new module layout
