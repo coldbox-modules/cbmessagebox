@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.0.2
+
+* Updated location protocol for download
+
 ## 3.0.1
 
 * Patch for not sending styles to headers to avoid collisions on test modes
