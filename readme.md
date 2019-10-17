@@ -105,7 +105,7 @@ The MessageBox module will render out the MessageBox HTML according to our stand
 ```js
 messagebox = {
     // The default HTMl template for emitting the messages
-	template 		= "#moduleMapping#/views/MessageBox.cfm",
+	template 		= "/cbmessagebox/views/MessageBox.cfm",
     // Override the internal styles, true to override
 	styleOverride 	= false
 };

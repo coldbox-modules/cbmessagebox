@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.1.0
+
+* Added new helper mixins, you can now invoke it via `cbMessageBox()`
+
 ## 3.0.2
 
 * Updated location protocol for download
