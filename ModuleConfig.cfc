@@ -12,6 +12,8 @@ component {
 	this.layoutParentLookup = true;
 	// CF Mapping
 	this.cfMapping			= "cbmessagebox";
+	// Helpers
+	this.applicationHelper 	= [ "helpers/mixins.cfm" ];
 
 	function configure(){
 	}
