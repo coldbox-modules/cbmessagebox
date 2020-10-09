@@ -61,6 +61,28 @@ component accessors="true" singleton{
 		return this;
 	}
 
+
+	/**
+	* Facade to setmessage with primary type
+	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
+	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
+	*/
+	MessageBox function primary( message="", array messageArray ){
+		arguments.type = "primary";
+		return setMessage( argumentCollection=arguments );
+	}
+	
+	/**
+	* Facade to setmessage with secondary type
+	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
+	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
+	*/
+	MessageBox function secondary( message="", array messageArray ){
+		arguments.type = "secondary";
+		return setMessage( argumentCollection=arguments );
+	}
+	
+	
 	/**
 	* Facade to setmessage with dark type
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
@@ -100,6 +122,15 @@ component accessors="true" singleton{
 		arguments.type = "error";
 		return setMessage( argumentCollection=arguments );
 	}
+	
+	/**
+	* Facade to setmessage with error type based on the bootstrap name "danger"
+	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
+	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
+	*/
+	MessageBox function danger( message="", array messageArray ){
+		return error( argumentCollection=arguments );
+	}
 
 	/**
 	* Facade to setmessage with info type
@@ -132,7 +163,7 @@ component accessors="true" singleton{
 
 	/**
 	* Create a new MessageBox with a specific message and type
-	* @type The message type, available types are: success, info, error, warn
+	* @type The message type, available types are: success, info, error, warn, dark, light, primary and secondary
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
 	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
 	*/
@@ -166,7 +197,7 @@ component accessors="true" singleton{
 		} else {
 			throw(
 				message = "The message type is invalid: #arguments.type#",
-				detail 	= "Valid types are success, info, error or warn",
+				detail 	= "Valid types are success, info, error or warn, light, dark, primary or secondary",
 				type 	= "MessageBox.InvalidMessageType"
 			);
 		}
@@ -377,7 +408,7 @@ component accessors="true" singleton{
 
 	/**
 	* Returns true if the message box contains a message of specified type
-	* @type The message type, available types are: success, info, error, warn
+	* @type The message type, available types are: success, info, error, warn, dark, light, primary and secondary
 	*/
 	boolean function hasMessageType(
 		required string type
@@ -396,7 +427,7 @@ component accessors="true" singleton{
 		else {
 			throw(
 				message = "Invalid message type: #arguments.type#",
-				detail 	= "Valid types are success, info, error or warn",
+				detail 	= "Valid types are success, info, error or warn, dark, light, primary and secondary",
 				type 	= "MessageBox.InvalidType"
 			);
 		}
@@ -405,7 +436,7 @@ component accessors="true" singleton{
 
 	/**
 	* Renders a messagebox immediately for you with the passed in arguments
-	* @type The message type, available types are: success, info, error, warn
+	* @type The message type, available types are: success, info, error, warn, dark, light, primary and secondary
 	* @message The message to flash, mutually exclusive to the 'messageArray' argument.
 	* @messageArray An array of messages to flash, mutually exclusive to the 'message' argument.
 	* @template The CFML template to use to render the messagebox, if not passed then the one set as default will be used.
@@ -432,12 +463,12 @@ component accessors="true" singleton{
 		} else {
 			throw(
 				message = "Invalid message type: #arguments.type#",
-				detail 	= "Valid types are success, info, error or warn",
+				detail 	= "Valid types are success, info, error, warn, dark, light, primary or secondary",
 				type 	= "MessageBox.InvalidType"
 			);
 		}
 
-		// If message array passed, fflatten and save.
+		// If message array passed, flatten and save.
 		if( structKeyExists( arguments, "messageArray") ){
 			msgStruct.message = flattenMessageArray( arguments.messageArray );
 		}
@@ -457,7 +488,7 @@ component accessors="true" singleton{
 	* @type The message type
 	*/
 	private boolean function isValidMessageType( required string type ){
-		return refindnocase( "(error|warn|info|success|dark|light)", trim( arguments.type ) ) ? true : false;
+		return refindnocase( "(error|warn|info|success|dark|light|primary|secondary)", trim( arguments.type ) ) ? true : false;
 	}
 
 	/**
