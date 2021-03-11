@@ -332,7 +332,8 @@ component accessors="true" singleton{
 
 		// clear?
 		if( arguments.clearData ){
-			flash.remove( name=flashKey, saveNow=true );
+			flash.remove( name=variables.flashKey, saveNow=true );
+			flash.remove( name=variables.flashDataKey, saveNow=true );
 		}
 
 		return data;
@@ -369,7 +370,8 @@ component accessors="true" singleton{
 
 		// clear?
 		if( arguments.clearMessage ){
-			flash.remove( name=flashKey, saveNow=true );
+			flash.remove( name=variables.flashKey, saveNow=true );
+			flash.remove( name=variables.flashDataKey, saveNow=true );
 		}
 
 		return results;
