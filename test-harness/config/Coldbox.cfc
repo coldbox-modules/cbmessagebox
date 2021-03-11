@@ -26,7 +26,7 @@
 			//Error/Exception Handling
 			exceptionHandler		= "",
 			onInvalidEvent			= "",
-			customErrorTemplate 	= "/coldbox/system/includes/BugReport.cfm",
+			customErrorTemplate 	= "/coldbox/system/exceptions/Whoops.cfm",
 
 			//Application Aspects
 			handlerCaching 			= false,
@@ -50,24 +50,25 @@
 
 		//Register interceptors as an array, we need order
 		interceptors = [
-			 //SES
-			 { class="coldbox.system.interceptors.SES" }
 		];
 
-		//LogBox DSL
+		// LogBox DSL
 		logBox = {
 			// Define Appenders
-			appenders = {
-				files={class="coldbox.system.logging.appenders.RollingFileAppender",
-					properties = {
-						filename = "tester", filePath="/#appMapping#/logs"
+			appenders : {
+				files : {
+					class      : "coldbox.system.logging.appenders.RollingFileAppender",
+					properties : {
+						filename : "tester",
+						filePath : "/#appMapping#/logs"
 					}
-				}
+				},
+				console : { class : "coldbox.system.logging.appenders.ConsoleAppender" }
 			},
 			// Root Logger
-			root = { levelmax="DEBUG", appenders="*" },
+			root  : { levelmax : "DEBUG", appenders : "*" },
 			// Implicit Level Categories
-			info = [ "coldbox.system" ]
+			info  : [ "coldbox.system" ]
 		};
 
 	}
@@ -81,12 +82,6 @@
 				moduleName 		= request.MODULE_NAME,
 				invocationPath 	= "moduleroot"
 			);
-	}
-
-	// Stupid 2018 workaround to make build pass
-	// https://tracker.adobe.com/#/view/CF-4203283
-	function preModuleLoad() {
-		getApplicationMetadata();
 	}
 
 }

@@ -2,11 +2,11 @@
 
 # WELCOME TO THE MESSAGEBOX MODULE
 
-The MessageBox module is a very small but super useful UI module that allows you to create informative HTML message boxes by leveraging ColdBox's Flash RAM to save messages across relocations.
+The MessageBox module is a very small but super useful UI module that allows you to create informative HTML message boxes by leveraging ColdBox's Flash RAM to save messages across relocations.  You can even save an array of metadata alongside the message and use it for custom rendering or any type of purposes.
 
 ## Message Types
 
-The supported message types are
+The supported message types are:
 
 * `info`
 * `warn`
@@ -14,6 +14,8 @@ The supported message types are
 * `success`
 * `dark`
 * `light`
+
+Please note that you can skin these types as you see fit by either overriding the css tyles or creating your own messagebox cfm template.
 
 <img src="https://raw.githubusercontent.com/coldbox-modules/cbmessagebox/development/test-harness/messageboxes.png">
 
@@ -23,14 +25,14 @@ Apache License, Version 2.0.
 
 ## IMPORTANT LINKS
 
-- https://github.com/coldbox-modules/cbmessagebox
-- https://forgebox.io/view/cbmessagebox
-- [Changelog](changelog.md)
+* https://github.com/coldbox-modules/cbmessagebox
+* https://forgebox.io/view/cbmessagebox
+* [Changelog](changelog.md)
 
 ## SYSTEM REQUIREMENTS
 
-- Lucee 4.5+
-- ColdFusion 10+
+* Lucee 5+
+* ColdFusion 2016+
 
 # INSTRUCTIONS
 
@@ -42,16 +44,24 @@ Just drop into your **modules** folder or use CommandBox to install
 
 The module registers the MessageBox model: `messagebox@cbmessagebox` that you can use to emit messages. Check out the API Docs for all the possible functions.
 
+## Helpers
+
+The module also registers a helper mixin: `cbMessagebox()` that you can use in your handlers, interceptors, layouts and views to emit or render messages.
+
 ## Settings
 
-You can use the MessageBox as is with the current skin or use the functions or settings to overide styles and skinning.  You must place the settings in your `ColdBox.cfc` file under a `messagebox` struct:
+You can use the MessageBox as is with the current skin or use the functions or settings to overide styles and skinning template.  You must place the settings in your `ColdBox.cfc` file under the `moduleSettings.cbMessagebox` struct:
 
 ```js
-messagebox = {
-    // The default HTMl template for emitting the messages
-	template 		= "#moduleMapping#/views/MessageBox.cfm",
-    // Override the internal styles, true to override
-	styleOverride 	= false
+moduleSettings = {
+
+	cbMessagebox = {
+		/// The default HTMl template for emitting the messages, this can include or not the .cfm and be 
+		// an include path.
+		template 		= "/includes/templates/messagebox",
+		// Override the internal styles, true to override
+		styleOverride 	= false
+	}
 };
 ```
 
@@ -59,22 +69,23 @@ messagebox = {
 
 You can find all the methods in our API Docs: <a href="https://apidocs.ortussolutions.com/#/coldbox-modules/cbmessagebox/">https://apidocs.ortussolutions.com/#/coldbox-modules/cbmessagebox/</a>
 
+All methods that accept a `message` argument can accept either a string or an array of messages to store and render.  You can also pass in an optional `separator` argument which will be used to join the messages with.  The default separator is a `<br>` tag.
+
 Methods for setting messages:
 
-* `info( message, messageArray )` : To render info message directly
-* `warning( message, messageArray )` : To render a warning message
-* `error( message, messageArray )` : To render an error message
-* `success( message, messageArray )` : To render a success message
-* `dark( message, messageArray )` : To render a dark background message
-* `light( message, messageArray )` : To render a light background message
-* `setMessage( type, message, messageArray )` : Set a message according to passed type
+* `info( message, separator='<br>' )` : To render info message directly
+* `warning( message, separator='<br>' )` : To render a warning message
+* `error( message, separator='<br>' )` : To render an error message
+* `success( message, separator='<br>' )` : To render a success message
+* `dark( message, separator='<br>' )` : To render a dark background message
+* `light( message, separator='<br>' )` : To render a light background message
+* `setMessage( type, message, separator='<br>' )` : Set a message according to passed type
 
 Methods for manipulating messages:
 
-* `append( message, defaultType="info" )` : To append messages
-* `appendArray( messageArray, defaultType="info" )` : To append array of messages
-* `prependArray( messageArray, defaultType="info" )` : To prepend array of messages
-* `getMessage()` : Get a structure of the message data: `{ type, message }`
+* `append( message, defaultType="info", separator='<br>' )` : To append messages
+* `prepend( messageArray, defaultType="info", separator='<br>' )` : To prepend messages
+* `getMessage()` : Get a structure of the message data: `{ type, message, timestamp }`
 * `clearMessage()` : To clear the current message
 * `isEmptyMessage()` : Verify if you have any messages
 
@@ -87,12 +98,60 @@ Metadata addition to messages:
 
 Rendering methods:
 
-* `renderit( clearMessage=true, template )` : To render the messagebox
-* `renderMessage( type, message, messageArray, template )` : To render an a-la-carte messagebox
+* `renderit( clearMessage=true, template )` : To render the messagebox in the default template or passed template
+* `renderMessage( type, message, separator='<br>', template )` : To render an a-la-carte messagebox with the default template or passed template
+
+### Examples
 
 ```html
-#getInstance( "messagebox@cbmessagebox" ).renderIt()#
-#getInstance( "messagebox@cbmessagebox" ).renderMessage( "info", "This is an info from message land!" )#
+<cfoutput>
+<h1>MessageBox Renderit</h1>
+#cbMessageBox().renderIt()#
+
+<hr>
+
+<h1>MessageBox Renderit With Template</h1>
+<cfset cbMessageBox().info( "Rendering a custom template" )>
+#cbMessageBox().renderIt( template : "/includes/messagebox" )#
+
+<hr>
+
+<h1>MessageBox Direct Render</h1>
+#cbMessageBox().renderMessage( "success", "I am success! I <a href='##'>am a link</a>" )#
+#cbMessageBox().renderMessage( "info", "I am info! I <a href='##'>am a link</a>" )#
+#cbMessageBox().renderMessage( "warn", "I am warn! I <a href='##'>am a link</a>" )#
+#cbMessageBox().renderMessage( "error", "I am error! I <a href='##'>am a link</a>" )#
+#cbMessageBox().renderMessage( "dark", "I am a dark alert! I <a href='##'>am a link</a>" )#
+#cbMessageBox().renderMessage( "light", "I am a light alert! I <a href='##'>am a link</a>" )#
+
+<hr>
+
+<h1>Message Arrays</h1>
+#cbMessageBox().renderMessage( "success", [
+	"I am success! I <a href='##'>am a link</a>",
+	"I love being successful!"
+]  )#
+#cbMessageBox().renderMessage( "info", [
+	"I am info! I <a href='##'>am a link</a>",
+	"I love being info!"
+]  )#
+#cbMessageBox().renderMessage( "warn", [
+	"I am warn! I <a href='##'>am a link</a>",
+	"I love being warnful!"
+]  )#
+#cbMessageBox().renderMessage( "error", [
+	"I am error! I <a href='##'>am a link</a>",
+	"I love being errorful!"
+]  )#
+#cbMessageBox().renderMessage( "dark", [
+	"I am dark! I <a href='##'>am a link</a>",
+	"I love being darkful!"
+]  )#
+#cbMessageBox().renderMessage( "light", [
+	"I am light! I <a href='##'>am a link</a>",
+	"I love being lightful!"
+]  )#
+</cfoutput>
 ```
 
 > **Important**: Please note that the MessageBox module leverages the FlashRAM and all messages are cleared for you automatically after rendering.  You can delay that if you use the `clearMessage=false` argument.
@@ -100,12 +159,12 @@ Rendering methods:
 
 ## MessageBox Custom Templates
 
-The MessageBox module will render out the MessageBox HTML according to our standards.  However, we all know the developers are picky beings and very individualistic.  Therefore, we allow the usage of your own templates for rendering out the MessageBox. You can do this by using the custom settings in your `ColdBox.cfc` configuration file
+The MessageBox module will render out the MessageBox HTML according to our standards.  However, we all know the developers are picky beings and very individualistic.  Therefore, we allow the usage of your own templates for rendering out the MessageBox. You can do this by using the custom settings in your `ColdBox.cfc` configuration file or pass in the template via the `template` argument.
 
 ```js
 messagebox = {
     // The default HTMl template for emitting the messages
-	template 		= "/cbmessagebox/views/MessageBox.cfm",
+	template 		= "/cbmessagebox/views/MessageBox",
     // Override the internal styles, true to override
 	styleOverride 	= false
 };
@@ -143,19 +202,8 @@ The template can then be written:
 You can also ignore the global setting and use the `template` argument via the `renderIt()` and `renderMessage()` methods:
 
 ```html
-#getInstance( "messagebox@cbmessagebox" ).renderit(template=path)#
-#getInstance( "messagebox@cbmessagebox" ).renderMessage(type="info", message="Hello", template=path)#
-```
-
-
-## Appending/PrePending Messages
-
-You can also append messages to the MessageBox Flash RAM entry by leveraging the, drum roll please......, `append()` or `appendArray()` methods:
-
-```js
-getInstance( "messagebox@cbmessagebox" ).append( "Hello" );
-getInstance( "messagebox@cbmessagebox" ).appendArray( [ "Hello", "You Welcome!" ] );
-getInstance( "messagebox@cbmessagebox" ).prependArray( [ "Hello", "You Welcome!" ] );
+#cbMessageBox().renderit(template=path)#
+#cbMessageBox().renderMessage(type="info", message="Hello", template=path)#
 ```
 
 ## Utility Methods
