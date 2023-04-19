@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ----
 
+## [Unreleased]
+
+### Added
+
+- Github Actions Migration
+- ColdBox 7 testing
+- Github support files
+
 ## [4.0.0] => 2021-MAR-11
 
 ### Added
@@ -35,25 +43,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Dropped ACF11 and Lucee4.5 Support
 * Dropped ColdBox 4 support
 
-----
-
 ## [3.1.0]
 
 * Added new helper mixins, you can now invoke it via `cbMessageBox()`
-
-----
 
 ## [3.0.2]
 
 * Updated location protocol for download
 
-----
-
 ## [3.0.1]
 
 * Patch for not sending styles to headers to avoid collisions on test modes
-
-----
 
 ## [3.0.0]
 
@@ -63,14 +63,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Added new messagebox type: `dark` for a nice dark tone
 * Update all css to more modern look and feel
 
-----
-
 ## [2.2.1]
 
 * Updates to unified workbench
 * Fixes on warning messages showing as infos
-
-----
 
 ## [2.2.0]
 
@@ -78,15 +74,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fix on `getData()` to clear the message correctly.
 * Travis updates
 
-----
-
 ## [2.1.0 ]
 
 * Travis updates
 * DocBox Updates
 * Build Process updates
-
-----
 
 ## [2.0.0]
 
@@ -98,9 +90,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Made default types changeable via prepend and append array methods
 * Change all internal instance properties to accessible getter/setter properties. This will allow for overriding of all internal state variables
 
-----
-
 ## [1.0.0]
 
 * Create first module version
-
