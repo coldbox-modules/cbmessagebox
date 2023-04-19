@@ -3,7 +3,7 @@
  * Copyright 2005-2007 ColdBox Framework by Luis Majano and Ortus Solutions, Corp
  * www.ortussolutions.com
  * ********************************************************************************
-*/
+ */
 component {
 
 	// UPDATE THE NAME OF THE MODULE IN TESTING BELOW
@@ -12,34 +12,37 @@ component {
 
 	// APPLICATION CFC PROPERTIES
 	this.name               = "#request.MODULE_NAME# Testing Suite";
-	this.sessionManagement = true;
-	this.sessionTimeout = createTimespan( 0, 0, 15, 0 );
+	this.sessionManagement  = true;
+	this.sessionTimeout     = createTimespan( 0, 0, 15, 0 );
 	this.applicationTimeout = createTimespan( 0, 0, 15, 0 );
-	this.setClientCookies = true;
+	this.setClientCookies   = true;
 
 	// Create testing mapping
 	this.mappings[ "/tests" ] = getDirectoryFromPath( getCurrentTemplatePath() );
 
 	// The application root
-	rootPath = reReplaceNoCase( this.mappings[ "/tests" ], "tests(\\|/)", "" );
+	rootPath                 = reReplaceNoCase( this.mappings[ "/tests" ], "tests(\\|/)", "" );
 	this.mappings[ "/root" ] = rootPath;
 
 	// The module root path
-	moduleRootPath = reReplaceNoCase( this.mappings[ "/root" ], "#request.module_name#(\\|/)test-harness(\\|/)", "" );
-	this.mappings[ "/moduleroot" ] = moduleRootPath;
+	moduleRootPath = reReplaceNoCase(
+		this.mappings[ "/root" ],
+		"#request.module_name#(\\|/)test-harness(\\|/)",
+		""
+	);
+	this.mappings[ "/moduleroot" ]            = moduleRootPath;
 	this.mappings[ "/#request.MODULE_NAME#" ] = moduleRootPath & "#request.MODULE_NAME#";
 
 	// request start
 	public boolean function onRequestStart( String targetPage ){
-
 		// Set a high timeout for long running tests
-		setting requestTimeout="9999";
+		setting requestTimeout   ="9999";
 		// New ColdBox Virtual Application Starter
-		request.coldBoxVirtualApp = new coldbox.system.testing.VirtualApp( appMapping = "/root" );
+		request.coldBoxVirtualApp= new coldbox.system.testing.VirtualApp( appMapping = "/root" );
 
 		// ORM Reload for fresh results
-		if( structKeyExists( url, "fwreinit" ) ){
-			if( structKeyExists( server, "lucee" ) ){
+		if ( structKeyExists( url, "fwreinit" ) ) {
+			if ( structKeyExists( server, "lucee" ) ) {
 				pagePoolClear();
 			}
 			request.coldBoxVirtualApp.shutdown();
