@@ -12,25 +12,28 @@ component {
 		variables.cwd          = getCWD().reReplace( "\.$", "" );
 		variables.artifactsDir = cwd & "/.artifacts";
 		variables.buildDir     = cwd & "/.tmp";
+		variables.apidDocsDir = variables.buildDir & "/apidocs";
 		variables.apiDocsURL   = "http://localhost:60299/apidocs/";
 		variables.testRunner   = "http://localhost:60299/tests/runner.cfm";
 
 		// Source Excludes Not Added to final binary
 		variables.excludes = [
-			".gitignore",
-			".travis.yml",
-			".artifacts",
-			".tmp",
 			"build",
+			"node-modules",
+			"resources",
 			"test-harness",
-			".DS_Store",
-			".git"
+			"(package|package-lock).json",
+			"webpack.config.js",
+			"server-.*\.json",
+			"docker-compose.yml",
+			"^\..*"
 		];
 
 		// Cleanup + Init Build Directories
 		[
 			variables.buildDir,
-			variables.artifactsDir
+			variables.artifactsDir,
+			variables.apidDocsDir
 		].each( function( item ){
 			if ( directoryExists( item ) ) {
 				directoryDelete( item, true );
@@ -65,9 +68,6 @@ component {
 		// Create project mapping
 		fileSystemUtil.createMapping( arguments.projectName, variables.cwd );
 
-		// Run the tests
-		runTests();
-
 		// Build the source
 		buildSource( argumentCollection = arguments );
 
@@ -77,9 +77,6 @@ component {
 
 		// checksums
 		buildChecksums();
-
-		// Build latest changelog
-		latestChangelog();
 
 		// Finalize Message
 		print
@@ -99,7 +96,8 @@ component {
 			.params(
 				runner     = variables.testRunner,
 				verbose    = true,
-				outputFile = "build/results.json"
+				outputFile = "#variables.cwd#/test-harness/results/test-results",
+				outputFormats="json,antjunit"
 			)
 			.run();
 
@@ -131,9 +129,7 @@ component {
 			)
 			.toConsole();
 
-		// Prepare exports directory
-		variables.exportsDir = variables.artifactsDir & "/#projectName#/#arguments.version#";
-		directoryCreate( variables.exportsDir, true, true );
+		ensureExportDir( argumentCollection = arguments );
 
 		// Project Build Dir
 		variables.projectBuildDir = variables.buildDir & "/#projectName#";
@@ -201,9 +197,12 @@ component {
 		version   = "1.0.0",
 		outputDir = ".tmp/apidocs"
 	){
+		ensureExportDir( argumentCollection = arguments );
+
+		// Create project mapping
+		fileSystemUtil.createMapping( arguments.projectName, variables.cwd );
 		// Generate Docs
 		print.greenLine( "Generating API Docs, please wait..." ).toConsole();
-		directoryCreate( arguments.outputDir, true, true );
 
 		command( "docbox generate" )
 			.params(
@@ -225,27 +224,6 @@ component {
 			overwrite = true,
 			recurse   = true
 		);
-	}
-
-	/**
-	 * Build the latest changelog file: changelog-latest.md
-	 */
-	function latestChangelog(){
-		print.blueLine( "Building latest changelog..." ).toConsole();
-
-		if ( !fileExists( variables.cwd & "changelog.md" ) ) {
-			return error( "Cannot continue building, changelog.md file doesn't exist!" );
-		}
-
-		fileWrite(
-			variables.cwd & "changelog-latest.md",
-			fileRead( variables.cwd & "changelog.md" ).split( "----" )[ 2 ].trim() & chr( 13 ) & chr( 10 )
-		);
-
-		print
-			.greenLine( "Latest changelog file created at `changelog-latest.md`" )
-			.line()
-			.line( fileRead( variables.cwd & "changelog-latest.md" ) );
 	}
 
 	/********************************************* PRIVATE HELPERS *********************************************/
@@ -285,7 +263,7 @@ component {
 			function( path ){
 				var isExcluded = false;
 				variables.excludes.each( function( item ){
-					if ( path.replaceNoCase( variables.cwd, "", "all" ).findNoCase( item ) ) {
+					if ( path.replaceNoCase( variables.cwd, "", "all" ).reFindNoCase( item ) ) {
 						isExcluded = true;
 					}
 				} );
@@ -314,4 +292,18 @@ component {
 		return ( createObject( "java", "java.lang.System" ).getProperty( "cfml.cli.exitCode" ) ?: 0 );
 	}
 
+	/**
+	 * Ensure the export directory exists at artifacts/NAME/VERSION/
+	 */
+	private function ensureExportDir(
+		required projectName,
+		version   = "1.0.0"
+	){
+		if ( structKeyExists( variables, "exportsDir" ) && directoryExists( variables.exportsDir ) ){
+			return;
+		}
+		// Prepare exports directory
+		variables.exportsDir = variables.artifactsDir & "/#projectName#/#arguments.version#";
+		directoryCreate( variables.exportsDir, true, true );
+	}
 }

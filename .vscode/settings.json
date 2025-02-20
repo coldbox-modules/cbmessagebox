@@ -1,0 +1,31 @@
+{
+    "cflint.enabled": false,
+	"cfml.mappings": [
+		{
+			"logicalPath": "/coldbox",
+			"directoryPath": "./coldbox",
+			"isPhysicalDirectoryPath" :false
+		},
+		{
+			"logicalPath": "/testbox",
+			"directoryPath": "./testbox",
+			"isPhysicalDirectoryPath" :false
+		}
+	],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33060,
+            "driver": "MySQL",
+            "name": "local-mysql8",
+            "group": "local",
+            "database": "cbsecurity",
+            "username": "root",
+            "connectionTimeout": 1000
+        }
+    ]
+}

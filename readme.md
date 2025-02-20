@@ -1,4 +1,19 @@
-[![Build Status](https://travis-ci.org/coldbox-modules/cbmessagebox.svg?branch=development)](https://travis-ci.org/coldbox-modules/cbmessagebox)
+<p align="center">
+	<img src="https://www.ortussolutions.com/__media/coldbox-185-logo.png">
+	<br>
+	<img src="https://www.ortussolutions.com/__media/wirebox-185.png" height="125">
+	<img src="https://www.ortussolutions.com/__media/cachebox-185.png" height="125" >
+	<img src="https://www.ortussolutions.com/__media/logbox-185.png"  height="125">
+</p>
+
+<p align="center">
+	Copyright Since 2005 ColdBox Platform by Luis Majano and Ortus Solutions, Corp
+	<br>
+	<a href="https://www.coldbox.org">www.coldbox.org</a> |
+	<a href="https://www.ortussolutions.com">www.ortussolutions.com</a>
+</p>
+
+----
 
 # WELCOME TO THE MESSAGEBOX MODULE
 
@@ -31,8 +46,9 @@ Apache License, Version 2.0.
 
 ## SYSTEM REQUIREMENTS
 
+* BoxLang 1+
 * Lucee 5+
-* ColdFusion 2016+
+* ColdFusion 2021+
 
 # INSTRUCTIONS
 
@@ -56,7 +72,7 @@ You can use the MessageBox as is with the current skin or use the functions or s
 moduleSettings = {
 
 	cbMessagebox = {
-		/// The default HTMl template for emitting the messages, this can include or not the .cfm and be 
+		/// The default HTMl template for emitting the messages, this can include or not the .cfm and be
 		// an include path.
 		template 		= "/includes/templates/messagebox",
 		// Override the internal styles, true to override
@@ -179,12 +195,12 @@ The template can then be written:
 			local.cssType = " alert-info";
 			local.iconType = "icon-info-sign";
 			break;
-		}	
+		}
 		case "error" : {
 			local.cssType = " alert-error";
 			local.iconType = "icon-minus-sign";
 			break;
-		}	
+		}
 		default : {
 			local.cssType = "";
 			local.iconType = "icon-warning-sign";
@@ -249,7 +265,7 @@ Because of His grace, this project exists. If you don't like this, then don't re
 By whom also we have access by faith into this grace wherein we stand, and rejoice in hope of the glory of God.
 And not only so, but we glory in tribulations also: knowing that tribulation worketh patience;
 And patience, experience; and experience, hope:
-And hope maketh not ashamed; because the love of God is shed abroad in our hearts by the 
+And hope maketh not ashamed; because the love of God is shed abroad in our hearts by the
 Holy Ghost which is given unto us. ." Romans 5:5
 
 ### THE DAILY BREAD

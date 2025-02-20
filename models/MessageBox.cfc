@@ -2,7 +2,6 @@
  * Copyright Since 2005 Ortus Solutions, Corp
  * www.ortussolutions.com
  * ---
- * @author Luis Majano
  *
  * This module provides a way to track alert message boxes.  The user has several types of message types
  * 1. Warn
@@ -11,6 +10,8 @@
  * 4. Success
  * The messages and optional metadata will be stored in the application's Flash RAM storage.
  * The look and feel of the messages can be altered by styles and cfml template settings.
+ *
+ * @author Luis Majano
  */
 component accessors="true" singleton {
 
@@ -54,7 +55,7 @@ component accessors="true" singleton {
 	/**
 	 * Constructor
 	 *
-	 * @config The messagebox module configuration structure
+	 * @config        The messagebox module configuration structure
 	 * @config.inject coldbox:modulesettings:cbmessagebox
 	 */
 	function init( required struct config ){
@@ -71,7 +72,7 @@ component accessors="true" singleton {
 	/**
 	 * Facade to setmessage with dark type
 	 *
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 */
 	MessageBox function dark( message = "", separator ){
@@ -82,7 +83,7 @@ component accessors="true" singleton {
 	/**
 	 * Facade to setmessage with light type
 	 *
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 */
 	MessageBox function light( message = "", separator ){
@@ -93,7 +94,7 @@ component accessors="true" singleton {
 	/**
 	 * Facade to setmessage with success type
 	 *
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 */
 	MessageBox function success( message = "", separator ){
@@ -104,7 +105,7 @@ component accessors="true" singleton {
 	/**
 	 * Facade to setmessage with error type
 	 *
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 */
 	MessageBox function error( message = "", separator ){
@@ -115,7 +116,7 @@ component accessors="true" singleton {
 	/**
 	 * Facade to setmessage with info type
 	 *
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 */
 	MessageBox function info( message = "", separator ){
@@ -126,7 +127,7 @@ component accessors="true" singleton {
 	/**
 	 * Facade to setmessage with warn type
 	 *
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 */
 	MessageBox function warn( message = "" ){
@@ -136,7 +137,7 @@ component accessors="true" singleton {
 	/**
 	 * Facade to setmessage with warn type
 	 *
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 */
 	MessageBox function warning( message = "", separator ){
@@ -147,8 +148,8 @@ component accessors="true" singleton {
 	/**
 	 * Create a new MessageBox with a specific message and type
 	 *
-	 * @type The message type, available types are: success, info, error, warn, light, dark
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @type      The message type, available types are: success, info, error, warn, light, dark
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
 	 *
 	 * @throws InvalidMessageType - When an invalid type is sent
@@ -193,9 +194,9 @@ component accessors="true" singleton {
 	/**
 	 * Appends a message to the messagebox data. If there is no message, then it sets the default type to info.
 	 *
-	 * @message The message to append
+	 * @message     The message to append
 	 * @defaultType The default type to use if not passed. Defaults to 'info'
-	 * @separator The separator to use when flatenning the message array, it defaults to <br>
+	 * @separator   The separator to use when flatenning the message array, it defaults to <br>
 	 */
 	MessageBox function append(
 		required message,
@@ -214,10 +215,7 @@ component accessors="true" singleton {
 
 		// Are we getting an array of messages to flatten?
 		if ( isArray( arguments.message ) ) {
-			arguments.message = arrayToList(
-				arguments.message,
-				arguments.separator
-			);
+			arguments.message = arrayToList( arguments.message, arguments.separator );
 		}
 
 		// Get Current Message
@@ -225,11 +223,8 @@ component accessors="true" singleton {
 
 		// Append it now
 		return setMessage(
-			type    = currentMessage.type,
-			message = [
-				currentMessage.message,
-				arguments.message
-			],
+			type      = currentMessage.type,
+			message   = [ currentMessage.message, arguments.message ],
 			separator = arguments.separator
 		);
 	}
@@ -237,9 +232,9 @@ component accessors="true" singleton {
 	/**
 	 * Prepend a message to the messagebox data. If there is no message, then it sets the default type to info.
 	 *
-	 * @message The message to prepend
+	 * @message     The message to prepend
 	 * @defaultType The default type to use if not passed. Defaults to 'info'
-	 * @separator The separator to use when flatenning the message array, it defaults to <br>
+	 * @separator   The separator to use when flatenning the message array, it defaults to <br>
 	 */
 	MessageBox function prepend(
 		required message,
@@ -258,23 +253,14 @@ component accessors="true" singleton {
 
 		// Are we getting an array of messages to flatten?
 		if ( isArray( arguments.message ) ) {
-			arguments.message = arrayToList(
-				arguments.message,
-				arguments.separator
-			);
+			arguments.message = arrayToList( arguments.message, arguments.separator );
 		}
 
 		// Get Current Message
 		var currentMessage = getMessage();
 
 		// Prepend it now
-		return setMessage(
-			type    = currentMessage.type,
-			message = [
-				arguments.message,
-				currentMessage.message
-			]
-		);
+		return setMessage( type = currentMessage.type, message = [ arguments.message, currentMessage.message ] );
 	}
 
 	/**
@@ -285,11 +271,7 @@ component accessors="true" singleton {
 	struct function getMessage(){
 		return variables.flash.get(
 			name        : variables.flashKey,
-			defaultValue: {
-				"type"      : "",
-				"message"   : "",
-				"timestamp" : now()
-			}
+			defaultValue: { "type" : "", "message" : "", "timestamp" : now() }
 		);
 	}
 
@@ -297,10 +279,7 @@ component accessors="true" singleton {
 	 * Clears the message structure by deleting it from the flash scope.
 	 */
 	MessageBox function clearMessage(){
-		variables.flash.remove(
-			name    = variables.flashKey,
-			saveNow = true
-		);
+		variables.flash.remove( name = variables.flashKey, saveNow = true );
 		return this;
 	}
 
@@ -338,19 +317,13 @@ component accessors="true" singleton {
 	 * Add metadata that can be used for saving arbitrary stuff alongside our flash messages.
 	 * The name-value pair is added to the data collection (array)
 	 *
-	 * @key The key to store
+	 * @key   The key to store
 	 * @value The value to store
 	 */
 	MessageBox function addData( required key, required value ){
 		var data = variables.flash.get( variables.flashDataKey, [] );
 
-		arrayAppend(
-			data,
-			{
-				"key"   : arguments.key,
-				"value" : arguments.value
-			}
-		);
+		arrayAppend( data, { "key" : arguments.key, "value" : arguments.value } );
 
 		// Flash it
 		variables.flash.put(
@@ -374,14 +347,8 @@ component accessors="true" singleton {
 
 		// clear?
 		if ( arguments.clearData ) {
-			variables.flash.remove(
-				name    = variables.flashKey,
-				saveNow = true
-			);
-			variables.flash.remove(
-				name    = variables.flashDataKey,
-				saveNow = true
-			);
+			variables.flash.remove( name = variables.flashKey, saveNow = true );
+			variables.flash.remove( name = variables.flashDataKey, saveNow = true );
 		}
 
 		return data;
@@ -400,14 +367,11 @@ component accessors="true" singleton {
 	 * Renders the message box and clears the message structure by default
 	 *
 	 * @clearMessage Flag to clear the message structure or not after rendering. Default is true.
-	 * @template An optional CFML template to use for rendering instead of core or setting
+	 * @template     An optional CFML template to use for rendering instead of core or setting
 	 *
 	 * @return The rendered messagebox template
 	 */
-	function renderIt(
-		boolean clearMessage = true,
-		template
-	){
+	function renderIt( boolean clearMessage = true, template ){
 		var msgStruct    = getMessage();
 		var thisTemplate = ( isNull( arguments.template ) ? variables.template : arguments.template );
 		var results      = "";
@@ -425,14 +389,8 @@ component accessors="true" singleton {
 
 		// clear?
 		if ( arguments.clearMessage ) {
-			variables.flash.remove(
-				name    = variables.flashKey,
-				saveNow = true
-			);
-			variables.flash.remove(
-				name    = variables.flashDataKey,
-				saveNow = true
-			);
+			variables.flash.remove( name = variables.flashKey, saveNow = true );
+			variables.flash.remove( name = variables.flashDataKey, saveNow = true );
 		}
 
 		return results;
@@ -468,10 +426,10 @@ component accessors="true" singleton {
 	/**
 	 * Renders a messagebox immediately for you with the passed in arguments
 	 *
-	 * @type The message type, available types are: success, info, error, warn, dark, light
-	 * @message The message to flash, this can be a string or an array of messages
+	 * @type      The message type, available types are: success, info, error, warn, dark, light
+	 * @message   The message to flash, this can be a string or an array of messages
 	 * @separator The separator to use when flatting the message if it's an array. The default is a `<br>` tag.
-	 * @template The CFML template to use to render the messagebox, if not passed then the one set as default will be used.
+	 * @template  The CFML template to use to render the messagebox, if not passed then the one set as default will be used.
 	 *
 	 * @throws InvalidMessageType - When the type sent is invalid
 	 */
@@ -525,10 +483,7 @@ component accessors="true" singleton {
 	 * @type The message type
 	 */
 	private boolean function isValidMessageType( required string type ){
-		return reFindNoCase(
-			"(error|warn|info|success|dark|light)",
-			trim( arguments.type )
-		) ? true : false;
+		return reFindNoCase( "(error|warn|info|success|dark|light)", trim( arguments.type ) ) ? true : false;
 	}
 
 }
