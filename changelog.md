@@ -5,9 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-----
+* * *
 
 ## [Unreleased]
+
+## [4.1.0] - 2025-02-20
 
 ### Added
 
@@ -31,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Missing `dark,light` from type hints
-- Delete the metadata added also on `clearData=true` #15 (https://github.com/coldbox-modules/cbmessagebox/pull/15)
+- Delete the metadata added also on `clearData=true` #15 (<https://github.com/coldbox-modules/cbmessagebox/pull/15>)
 
 ### Deprecated
 
@@ -59,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.0.0]
 
 - Update to new module layout
-- Adding support for `success` alert message boxes. Updating throw details to correct inconsistency (https://github.com/coldbox-modules/cbmessagebox/pull/11) thanks to @zakarym
+- Adding support for `success` alert message boxes. Updating throw details to correct inconsistency (<https://github.com/coldbox-modules/cbmessagebox/pull/11>) thanks to @zakarym
 - Removed legacy icons and left just messageboxes with modern css styles
 - Added new messagebox type: `dark` for a nice dark tone
 - Update all css to more modern look and feel
@@ -94,3 +96,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0]
 
 - Create first module version
+
+[unreleased]: https://github.com/coldbox-modules/cbmessagebox/compare/v4.1.0...HEAD
+[4.1.0]: https://github.com/coldbox-modules/cbmessagebox/compare/9550067b9a2d42290e74741c5a84274cfdf30a6b...v4.1.0
